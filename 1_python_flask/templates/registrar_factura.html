@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Registrar facturas
+{% endblock %} 
+
+{% block content %}
+
+{%if factura %}
+    <h1 class="title">Editar factura: Codigo: {{factura.0}} / {{factura.1}} </h1>
+{%else%}
+
+    <h1 class="title">Registrar Factura</h1>
+ 
+ {%endif%}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+
+         {% for message in messages %}
+             <div class="message alert-success">
+                 {{messages}}
+            </div>
+         {% endfor %}
+
+
+    {% endif %}
+{%endwith%}
+
+<form action=""method="POST">
+
+   <label for="cliente">Nombre del cliente</label>
+   <input type="text" name="cliente"{%if factura %} value="{{factura.1}}"{% endif %}/>
+
+   <label for="productos">Nombre de Productos</label>
+   <input type="text" name="productos"{%if factura %} value="{{factura.2}}"{% endif %}/>
+
+   <label for="cantidad">cantidad de Productos</label>
+   <input type="number" name="cantidad"{%if factura %} value="{{factura.3}}"{% endif %}/>
+
+   <label for="fecha">Fecha de compra</label>
+   <input type="text" name="fecha"{%if factura %} value="{{factura.4}}"{% endif %}/>
+
+   <label for="total"> Total de Compra</label>
+   <input type="number" name="total"{%if factura %} value="{{factura.5}}"{% endif %}/>
+
+   <label for="metodo_pago"> Metodo de Pago</label>
+   <input type="text" name="metodo_pago"{%if factura %} value="{{factura.6}}"{% endif %}/>
+
+   <input type="submit" value ="Agregar"/>
+
+</form>
+
+    
+
+{% endblock %}

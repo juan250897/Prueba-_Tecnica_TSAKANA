@@ -1,0 +1,25 @@
+{% extends 'layout.html'%}
+
+{% block title %}
+    {{ factura.0 }}
+{% endblock %} 
+
+{% block content %}
+   
+<h1>
+   
+    factura No. {{factura.0}}
+   
+    
+</h1>
+<span class="date">
+<p>nombre cliente : {{factura.1}}</p>
+<p>Productos: {{factura.2}}</p>
+<p>cantidad : {{factura.3}}</p>
+<p>Fecha : {{factura.4}}</p>
+<p>Total : {{factura.5}}</p>
+<p>Metodo de Pago : {{factura.6}}</p>
+
+ 
+{% endblock %}
+        

@@ -1,0 +1,59 @@
+{% extends 'layout.html'%}
+
+{% block title %}
+    Registrar Producto
+{% endblock %} 
+
+{% block content %}
+
+{%if producto %}
+    <h1 class="title">Editar Producto: Codigo: {{producto.0}} / {{producto.2}} </h1>
+{%else%}
+
+    <h1 class="title">Registrar Producto</h1>
+ 
+ {%endif%}
+
+
+
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+
+         {% for message in messages %}
+             <div class="message alert-success">
+                 {{messages}}
+            </div>
+         {% endfor %}
+
+
+    {% endif %}
+{%endwith%}
+
+<form action=""method="POST">
+
+   <label for="categoria">Categoria del Producto</label>
+   <input type="text" name="categoria"{%if producto %} value="{{producto.1}}"{% endif %}/>
+
+   <label for="nombre">Nombre del Prodcuto</label>
+   <input type="text" name="nombre"{%if producto %} value="{{producto.2}}"{% endif %}/>
+
+   <label for="precio">Precio del Producto</label>
+   <input type="number" name="precio"{%if producto %} value="{{producto.3}}"{% endif %}/>
+
+   <label for="cantidad">cantidad del Producto</label>
+   <input type="number" name="cantidad"{%if producto %} value="{{producto.4}}"{% endif %}/>
+
+   <label for="estado"> Disponibilidad del Producto </label>
+   <input type="radio" name="estado" value="1">activo
+   <input type="radio" name="estado" value="0">Inactivo
+
+
+   <input type="submit" value ="Agregar"/>
+
+</form>
+
+
+   
+{% endblock %}
+        

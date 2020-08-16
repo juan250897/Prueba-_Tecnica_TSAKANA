@@ -1,0 +1,67 @@
+{% extends 'layout.html'%}
+
+{% block title %}
+    Clientes
+{% endblock %} 
+
+{% block content %}
+
+<h1 class="title">Clientes</h1>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+
+         {% for message in messages %}
+             <div class="message alert-success">
+                 {{messages}}
+            </div>
+         {% endfor %}
+
+         {% endif %}
+         {%endwith%}
+{%for cliente in clientes%}
+
+<article class="clientes-item">
+    <hr>
+    
+        <div class="data">
+            <h2>
+                <a href="{{url_for('cliente',cedula_id=cliente.0)}}">
+                    {{cliente.1}}
+                </a>
+                
+            </h2>
+            <span class="date">
+            <p>Cedula: {{cliente.0}}</p>
+            <p>Telefono : {{cliente.3}}</p>
+            
+            <a href="{{url_for('borrar_cliente',cedula_id=cliente.0)}}" class ="btn" >Eliminar</a>
+            <a href="{{url_for('editar_cliente',cedula_id=cliente.0)}}" class ="btn btn-warning" >Editar</a>
+            
+            
+
+            </span>
+
+        
+            <p>Direccion: {{cliente.2}}</p>
+        
+            
+        </div>
+
+        
+
+        <div class="clearfix"></div>
+
+        
+    
+    </article>
+
+
+
+
+
+   
+{% endfor %}
+
+{% endblock %}
+        

@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Registrar clientes
+{% endblock %} 
+
+{% block content %}
+
+{%if cliente %}
+    <h1 class="title">Editar cliente: Cedula: {{cliente.0}} / {{cliente.1}} </h1>
+{%else%}
+
+    <h1 class="title">Registrar Cliente</h1>
+ 
+ {%endif%}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+
+         {% for message in messages %}
+             <div class="message alert-success">
+                 {{messages}}
+            </div>
+         {% endfor %}
+
+
+    {% endif %}
+{%endwith%}
+
+<form action=""method="POST">
+
+{% if not cliente %}
+   <label for="cedula">Cedula del cliente</label>
+   <input type="number" name="cedula"/>
+
+   <label for="nombre">Nombre del cliente </label>
+   <input type="text" name="nombre" {%if cliente %} value="{{cliente.1}}"{% endif %}/>
+
+   <label for="direccion">Direccion del cliente</label>
+   <input type="text" name="direccion" {%if cliente %} value="{{cliente.2}}"{% endif %}/>
+
+   <label for="telefono">Telefono del cliente</label>
+   <input type="text" name="telefono" {%if cliente %} value="{{cliente.3}}"{% endif %}/>
+
+{%elif cliente %}
+
+   <label for="nombre">Nombre del cliente </label>
+   <input type="text" name="nombre" {%if cliente %} value="{{cliente.1}}"{% endif %}/>
+
+   <label for="direccion">Direccion del cliente</label>
+   <input type="text" name="direccion" {%if cliente %} value="{{cliente.2}}"{% endif %}/>
+
+   <label for="telefono">Telefono del cliente</label>
+   <input type="text" name="telefono" {%if cliente %} value="{{cliente.3}}"{% endif %}/>
+
+  
+{%endif%}
+
+<input type="submit" value ="Agregar"/>
+</form>
+
+    
+{% endblock %}

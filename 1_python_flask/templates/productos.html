@@ -1,0 +1,73 @@
+    {% extends 'layout.html'%}
+
+    {% block title %}
+        Productos
+    {% endblock %} 
+
+    {% block content %}
+
+    <h1 class="title">Productos</h1>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+
+         {% for message in messages %}
+             <div class="message alert-success">
+                 {{messages}}
+            </div>
+         {% endfor %}
+
+         {% endif %}
+         {%endwith%}
+
+    {%for producto in productos%}
+
+    {% if producto.5 == 1 %}
+
+    <article class="producto-item">
+        <hr>
+        
+            <div class="data">
+                <h2>
+                    <a href="{{url_for('producto',producto_id=producto.0)}}">
+                        {{producto.2}}
+                    </a>
+                    
+                </h2>
+                <span class="date">
+                <p>Codigo : {{producto.0}}</p>
+                <p>Categoria: {{producto.1}}</p>
+                <p>Precio $ : {{producto.3}}</p>
+                
+                
+                <a href="{{url_for('editar_producto',producto_id=producto.0)}}" class ="btn btn-warning" >Editar</a>
+                
+                
+    
+                </span>
+
+            
+                <p>Cantidad: {{producto.4}}</p>
+            
+                
+            </div>
+
+            
+
+            <div class="clearfix"></div>
+
+            
+        
+        </article>
+    
+
+    {% else %}
+
+    {% endif %}
+
+    
+       
+    {% endfor %}
+    
+    {% endblock %}
+            

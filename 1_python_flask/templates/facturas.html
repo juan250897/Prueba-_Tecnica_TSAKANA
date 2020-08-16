@@ -1,0 +1,74 @@
+{% extends 'layout.html'%}
+
+{% block title %}
+    Facturas
+{% endblock %} 
+
+{% block content %}
+
+<h1 class="title">Facturas</h1>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+
+         {% for message in messages %}
+             <div class="message alert-success">
+                 {{messages}}
+            </div>
+         {% endfor %}
+
+         {% endif %}
+         {%endwith%}
+
+
+{%for factura in facturas%}
+
+<article class="facturas-item">
+    <hr>
+    
+        <div class="data">
+            <h2>
+                <a href="{{url_for('factura',factura_id=factura.0)}}">
+                    Codigo: {{factura.0}}
+                </a>
+                
+            </h2>
+            <span class="date">
+            <p>Cliente: {{factura.1}}</p>
+            <p>Productos : {{factura.2}}</p>
+            <p>Cantidad Productos : {{factura.3}}</p>
+            <p>Fecha : {{factura.4}}</p>
+            
+            
+            
+            <a href="{{url_for('editar_factura',factura_id=factura.0)}}" class ="btn btn-warning" >Editar</a>
+            
+            
+
+            </span>
+
+        <span class ="datos_pago">
+            <p>Total: {{factura.5}}</p>
+            <p>Metodo de Pago: {{factura.6}}</p>
+        </span>
+        
+            
+        </div>
+
+        
+
+        <div class="clearfix"></div>
+
+        
+    
+    </article>
+
+
+
+
+
+   
+{% endfor %}
+
+{% endblock %}
+        
